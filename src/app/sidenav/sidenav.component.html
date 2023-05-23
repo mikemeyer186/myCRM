@@ -1,6 +1,43 @@
 <mat-drawer-container class="sidenav-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-        <p>Auto-resizing sidenav</p>
+    <mat-drawer #drawer class="sidenav-menu" [opened]="true" mode="side">
+        <div class="sidenav-logo">
+            <img src="assets/img/logo.png" class="logo" alt="logo">
+            <span>myCRM</span>
+        </div>
+        <div class="sidenav-navigation">
+            <ul>
+                <li routerLinkActive="active">
+                    <a routerLink="/dashboard">
+                        <mat-icon>dashboard</mat-icon>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a routerLink="/customers">
+                        <mat-icon>people</mat-icon>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a routerLink="/orders">
+                        <mat-icon>shopping_cart</mat-icon>
+                        <span>Orders</span>
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a routerLink="/products">
+                        <mat-icon>shopping_basket</mat-icon>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a routerLink="/settings">
+                        <mat-icon>settings</mat-icon>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </mat-drawer>
 
     <div class="example-sidenav-content">
@@ -8,7 +45,7 @@
             <button mat-icon-button class="toolbar-icon" (click)="drawer.toggle()">
                 <mat-icon>menu</mat-icon>
             </button>
-            <span>myCRM</span>
+            <span>myPage</span>
             <span class="toolbar-spacer"></span>
             <button mat-icon-button class="toolbar-icon favorite-icon" aria-label="Example icon-button with heart icon">
                 <mat-icon>favorite</mat-icon>
@@ -17,6 +54,9 @@
                 <mat-icon>share</mat-icon>
             </button>
         </mat-toolbar>
+        <div class="router-container">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 
 </mat-drawer-container>

@@ -19,4 +19,60 @@
 
 .sidenav-container {
   height: 100vh;
+
+  .sidenav-menu {
+    width: 300px;
+
+    .sidenav-logo {
+      border-bottom: 1px solid rgba(100, 100, 100, 0.1);
+      padding: 24px;
+      height: 63px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .logo {
+        width: 35px;
+        height: 35px;
+        object-fit: cover;
+      }
+
+      span {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-left: 16px;
+      }
+    }
+
+    .sidenav-navigation {
+      padding: 24px 0px;
+      transition: all 125ms ease-in-out;
+
+      ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+          list-style: none;
+          font-size: 1.2rem;
+
+          a {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 16px 24px;
+            color: rgba(0, 0, 0, 0.87);
+            text-decoration: none;
+            &:hover {
+              background: rgba(200, 200, 200, 0.1);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .router-container {
+    padding: 24px;
+  }
 }
