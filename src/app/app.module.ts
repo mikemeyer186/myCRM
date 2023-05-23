@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +15,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomersComponent } from './customers/customers.component';
 
 @NgModule({
-  declarations: [AppComponent, SidenavComponent, DashboardComponent, CustomersComponent],
+  declarations: [
+    AppComponent,
+    SidenavComponent,
+    DashboardComponent,
+    CustomersComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,6 +28,8 @@ import { CustomersComponent } from './customers/customers.component';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
+    MatButtonModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
