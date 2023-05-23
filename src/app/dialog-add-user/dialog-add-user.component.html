@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>New Customer</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="userService.newCustomerName">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="userService.addUserDialogClose()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="userService.newCustomerName" cdkFocusInitial>Ok</button>
+</div>

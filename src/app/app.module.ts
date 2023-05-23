@@ -6,6 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomersComponent } from './customers/customers.component';
+import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +25,7 @@ import { CustomersComponent } from './customers/customers.component';
     SidenavComponent,
     DashboardComponent,
     CustomersComponent,
+    DialogAddUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +36,10 @@ import { CustomersComponent } from './customers/customers.component';
     MatSidenavModule,
     MatButtonModule,
     MatTooltipModule,
+    MatDialogModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

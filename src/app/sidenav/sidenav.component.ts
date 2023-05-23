@@ -7,5 +7,5 @@ import { CrmService } from '../crm.service';
   styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent {
-  constructor(public service: CrmService) {}
+  constructor(public crmService: CrmService) {}
 }
