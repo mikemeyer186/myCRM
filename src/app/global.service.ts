@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class CrmService {
+export class GlobalService {
   page: string = 'DASHBOARD';
   routerEvent: Subscription;
 

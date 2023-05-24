@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CrmService } from '../crm.service';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,5 +7,5 @@ import { CrmService } from '../crm.service';
   styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent {
-  constructor(public crmService: CrmService) {}
+  constructor(public GlobalService: GlobalService) {}
 }

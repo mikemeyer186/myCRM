@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../user.service';
+import { CustomerService } from '../customer.service';
 
 @Component({
   selector: 'app-dialog-add-customer',
@@ -7,5 +7,5 @@ import { UserService } from '../user.service';
   styleUrls: ['./dialog-add-customer.component.scss'],
 })
 export class DialogAddCustomerComponent {
-  constructor(public userService: UserService) {}
+  constructor(public CustomerService: CustomerService) {}
 }

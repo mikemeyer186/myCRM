@@ -5,7 +5,7 @@ import { DialogAddCustomerComponent } from './dialog-add-customer/dialog-add-cus
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class CustomerService {
   newCustomerName: String = '';
 
   constructor(public addDialog: MatDialog) {}
