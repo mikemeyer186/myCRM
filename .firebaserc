@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "mycrm-f4e26": {
+      "hosting": {
+        "myCRM": [
+          "mycrm-f4e26"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mycrm-f4e26"
+  }
+}

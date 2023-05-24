@@ -6,56 +6,73 @@
 
         <form class="example-form">
 
-            <table class="full-width" cellspacing="10">
+            <table class="full-width" cellspacing="0">
                 <tr>
-                    <td><mat-form-field class="full-width">
+                    <td>
+                        <mat-form-field class="full-width">
                             <mat-label>First Name</mat-label>
-                            <input matInput>
+                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.firstName"
+                                name="firstName">
                         </mat-form-field>
                     </td>
-                    <td><mat-form-field class="full-width">
+                    <td>
+                        <mat-form-field class="full-width">
                             <mat-label>Last Name</mat-label>
-                            <input matInput>
+                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.lastName"
+                                name="lastName">
                         </mat-form-field>
                     </td>
                 </tr>
             </table>
 
-            <table class="full-width" cellspacing="10">
+            <table class="full-width" cellspacing="0">
                 <tr>
-                    <td><mat-form-field class="full-width">
+                    <td>
+                        <mat-form-field class="full-width">
                             <mat-label>Street & No.</mat-label>
-                            <input matInput>
+                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.street" name="street">
                         </mat-form-field>
                     </td>
                 </tr>
             </table>
 
-            <table class="full-width" cellspacing="10">
+            <table class="full-width" cellspacing="0">
                 <tr>
-                    <td><mat-form-field class="full-width">
+                    <td>
+                        <mat-form-field class="full-width">
                             <mat-label>City</mat-label>
-                            <input matInput>
+                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.city" name="city">
                         </mat-form-field>
                     </td>
-                    <td><mat-form-field class="full-width">
+                    <td>
+                        <mat-form-field class="full-width">
                             <mat-label>State</mat-label>
-                            <input matInput>
+                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.state" name="state">
                         </mat-form-field>
                     </td>
-                    <td><mat-form-field class="full-width">
+                    <td>
+                        <mat-form-field class="full-width">
                             <mat-label>Postal Code</mat-label>
-                            <input matInput #postalCode maxlength="5">
+                            <input type="text" matInput #postalCode maxlength="5"
+                                [(ngModel)]="customerService.newCustomer.postalCode" name="postalCode">
                         </mat-form-field>
                     </td>
                 </tr>
             </table>
 
-            <table class="full-width" cellspacing="10">
+            <table class="full-width" cellspacing="0">
                 <tr>
-                    <td><mat-form-field>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <mat-label>E-Mail</mat-label>
+                            <input type="email" matInput [(ngModel)]="customerService.newCustomer.email" name="email">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="full-width">
                             <mat-label>Date of Birth</mat-label>
-                            <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY">
+                            <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY"
+                                [(ngModel)]="customerService.birthDate" name="birthDate">
                             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
@@ -68,8 +85,8 @@
     </div>
 
     <div mat-dialog-actions align="end">
-        <button mat-button (click)="CustomerService.addCustomerDialogClose()">Cancel</button>
-        <button mat-button [mat-dialog-close]="CustomerService.newCustomerName" cdkFocusInitial>Save</button>
+        <button mat-button (click)="customerService.addCustomerDialogClose()">Cancel</button>
+        <button mat-button (click)="customerService.saveNewCustomer()" cdkFocusInitial>Save</button>
     </div>
 
 </div>

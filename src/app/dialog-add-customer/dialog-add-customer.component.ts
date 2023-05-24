@@ -7,5 +7,5 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./dialog-add-customer.component.scss'],
 })
 export class DialogAddCustomerComponent {
-  constructor(public CustomerService: CustomerService) {}
+  constructor(public customerService: CustomerService) {}
 }

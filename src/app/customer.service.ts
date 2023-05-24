@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddCustomerComponent } from './dialog-add-customer/dialog-add-customer.component';
+import { Customer } from 'src/models/customer.class';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CustomerService {
-  newCustomerName: String = '';
+  newCustomer = new Customer();
+  birthDate!: Date;
 
   constructor(public addDialog: MatDialog) {}
 
@@ -14,15 +16,15 @@ export class CustomerService {
     const addDialog = this.addDialog.open(DialogAddCustomerComponent, {
       maxWidth: '100vw',
     });
-
-    addDialog.afterClosed().subscribe((data: string) => {
-      if (data) {
-        console.log(data);
-      }
-    });
   }
 
   addCustomerDialogClose() {
     this.addDialog.closeAll();
+  }
+
+  saveNewCustomer() {
+    this.newCustomer.birthDate = this.birthDate.getTime();
+    this.addCustomerDialogClose();
+    console.log(this.newCustomer);
   }
 }
