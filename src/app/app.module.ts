@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomersComponent } from './customers/customers.component';
-import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
+import { DialogAddCustomerComponent } from './dialog-add-customer/dialog-add-customer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.compon
     SidenavComponent,
     DashboardComponent,
     CustomersComponent,
-    DialogAddUserComponent,
+    DialogAddCustomerComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
+import { DialogAddCustomerComponent } from './dialog-add-customer/dialog-add-customer.component';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +10,8 @@ export class UserService {
 
   constructor(public addDialog: MatDialog) {}
 
-  addUserDialogOpen() {
-    const addDialog = this.addDialog.open(DialogAddUserComponent, {
+  addCustomerDialogOpen() {
+    const addDialog = this.addDialog.open(DialogAddCustomerComponent, {
       maxWidth: '100vw',
     });
 
@@ -22,7 +22,7 @@ export class UserService {
     });
   }
 
-  addUserDialogClose() {
+  addCustomerDialogClose() {
     this.addDialog.closeAll();
   }
 }
