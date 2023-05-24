@@ -17,6 +17,9 @@ export class GlobalService {
     });
   }
 
+  /**
+   * Get the page title from the url
+   */
   getPageFromUrl() {
     this.page = this.router.url.split('/')[1].toUpperCase();
   }

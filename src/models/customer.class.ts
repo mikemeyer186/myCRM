@@ -18,4 +18,17 @@ export class Customer {
     this.email = obj ? obj.email : '';
     this.birthDate = obj ? obj.birthDate : '';
   }
+
+  public toJSON(): any {
+    return {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      street: this.street,
+      city: this.city,
+      state: this.state,
+      postalCode: this.postalCode,
+      email: this.email,
+      birthDate: this.birthDate,
+    };
+  }
 }
