@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GlobalService } from '../global.service';
+import { CustomerService } from '../customer.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,5 +8,11 @@ import { GlobalService } from '../global.service';
   styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent {
-  constructor(public GlobalService: GlobalService) {}
+  constructor(
+    public globalService: GlobalService,
+    public customerService: CustomerService
+  ) {}
+  ngOnInit(): void {
+    this.customerService.loadCustomerFromFirestore();
+  }
 }

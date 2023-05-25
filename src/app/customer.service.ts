@@ -2,14 +2,21 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddCustomerComponent } from './dialog-add-customer/dialog-add-customer.component';
 import { Customer } from 'src/models/customer.class';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  addDoc,
+  getDocs,
+} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CustomerService {
+  customerList: any[] = [];
   newCustomer = new Customer();
   newCustomerProgess: boolean = false;
+  birthDate!: Date;
   newCustomerCountry: string[] = [
     'Deutschland',
     'Österreich',
@@ -44,7 +51,6 @@ export class CustomerService {
     'Tunesien',
     'Marokko',
   ];
-  birthDate!: Date;
 
   constructor(public addDialog: MatDialog, private firestore: Firestore) {}
 
@@ -94,5 +100,16 @@ export class CustomerService {
       this.newCustomerProgess = false;
       this.addCustomerDialogClose();
     }, 1000);
+  }
+
+  async loadCustomerFromFirestore() {
+    const querySnapshot = await getDocs(
+      collection(this.firestore, 'customers')
+    );
+    this.customerList = querySnapshot.docs.map((customer) => {
+      const data = customer.data() as Customer;
+      return { ...data };
+    });
+    console.log(this.customerList);
   }
 }

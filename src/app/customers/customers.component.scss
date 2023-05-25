@@ -3,3 +3,11 @@
   top: calc(63px + 24px);
   right: 24px;
 }
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
