@@ -3,11 +3,11 @@ export class Customer {
   lastName: string;
   street: string;
   city: string;
-  land: string;
+  country: string;
   state: string;
   postalCode: number;
   email: string;
-  birthDate: number;
+  birthDate: string;
 
   constructor(obj?: any) {
     this.firstName = obj ? obj.firstName : '';
@@ -18,7 +18,7 @@ export class Customer {
     this.postalCode = obj ? obj.postalCode : '';
     this.email = obj ? obj.email : '';
     this.birthDate = obj ? obj.birthDate : '';
-    this.land = obj ? obj.land : '';
+    this.country = obj ? obj.country : '';
   }
 
   public toJSON(): any {
@@ -31,7 +31,7 @@ export class Customer {
       postalCode: this.postalCode,
       email: this.email,
       birthDate: this.birthDate,
-      land: this.land,
+      country: this.country,
     };
   }
 }

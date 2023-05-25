@@ -10,7 +10,7 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 export class CustomerService {
   newCustomer = new Customer();
   newCustomerProgess: boolean = false;
-  newCustomerLand: string[] = [
+  newCustomerCountry: string[] = [
     'Deutschland',
     'Österreich',
     'Schweiz',
@@ -69,7 +69,7 @@ export class CustomerService {
    */
   saveNewCustomer() {
     this.newCustomerProgess = true;
-    this.newCustomer.birthDate = this.birthDate.getTime();
+    this.newCustomer.birthDate = this.birthDate.toLocaleDateString();
     this.createNewCustomerFirestore();
   }
 

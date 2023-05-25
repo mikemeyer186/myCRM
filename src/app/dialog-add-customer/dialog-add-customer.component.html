@@ -66,9 +66,11 @@
                     <td>
                         <mat-form-field class="full-width">
                             <mat-label>Country</mat-label>
-                            <mat-select>
-                                <mat-option *ngFor="let land of this.customerService.newCustomerLand"
-                                    [disabled]="this.customerService.newCustomerProgess">{{ land }}</mat-option>
+                            <mat-select [(value)]="this.customerService.newCustomer.country">
+                                <mat-option *ngFor="let country of this.customerService.newCustomerCountry"
+                                    [disabled]="this.customerService.newCustomerProgess" value="{{ country }}">{{
+                                    country
+                                    }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </td>
