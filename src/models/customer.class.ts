@@ -3,6 +3,7 @@ export class Customer {
   lastName: string;
   street: string;
   city: string;
+  land: string;
   state: string;
   postalCode: number;
   email: string;
@@ -17,6 +18,7 @@ export class Customer {
     this.postalCode = obj ? obj.postalCode : '';
     this.email = obj ? obj.email : '';
     this.birthDate = obj ? obj.birthDate : '';
+    this.land = obj ? obj.land : '';
   }
 
   public toJSON(): any {
@@ -29,6 +31,7 @@ export class Customer {
       postalCode: this.postalCode,
       email: this.email,
       birthDate: this.birthDate,
+      land: this.land,
     };
   }
 }

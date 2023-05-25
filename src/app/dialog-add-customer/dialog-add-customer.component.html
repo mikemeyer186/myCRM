@@ -1,5 +1,7 @@
 <div class="dialog-container">
 
+    <mat-progress-bar mode="indeterminate" *ngIf="this.customerService.newCustomerProgess"></mat-progress-bar>
+
     <h1 mat-dialog-title>New Customer</h1>
 
     <div mat-dialog-content>
@@ -12,14 +14,14 @@
                         <mat-form-field class="full-width">
                             <mat-label>First Name</mat-label>
                             <input type="text" matInput [(ngModel)]="customerService.newCustomer.firstName"
-                                name="firstName">
+                                name="firstName" [disabled]="this.customerService.newCustomerProgess">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="full-width">
                             <mat-label>Last Name</mat-label>
                             <input type="text" matInput [(ngModel)]="customerService.newCustomer.lastName"
-                                name="lastName">
+                                name="lastName" [disabled]="this.customerService.newCustomerProgess">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -30,7 +32,15 @@
                     <td>
                         <mat-form-field class="full-width">
                             <mat-label>Street & No.</mat-label>
-                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.street" name="street">
+                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.street" name="street"
+                                [disabled]="this.customerService.newCustomerProgess">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <mat-label>State</mat-label>
+                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.state" name="state"
+                                [disabled]="this.customerService.newCustomerProgess">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -40,21 +50,26 @@
                 <tr>
                     <td>
                         <mat-form-field class="full-width">
-                            <mat-label>City</mat-label>
-                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.city" name="city">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="full-width">
-                            <mat-label>State</mat-label>
-                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.state" name="state">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="full-width">
                             <mat-label>Postal Code</mat-label>
                             <input type="text" matInput #postalCode maxlength="5"
-                                [(ngModel)]="customerService.newCustomer.postalCode" name="postalCode">
+                                [(ngModel)]="customerService.newCustomer.postalCode" name="postalCode"
+                                [disabled]="this.customerService.newCustomerProgess">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <mat-label>City</mat-label>
+                            <input type="text" matInput [(ngModel)]="customerService.newCustomer.city" name="city"
+                                [disabled]="this.customerService.newCustomerProgess">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <mat-label>Country</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="let land of this.customerService.newCustomerLand"
+                                    [disabled]="this.customerService.newCustomerProgess">{{ land }}</mat-option>
+                            </mat-select>
                         </mat-form-field>
                     </td>
                 </tr>
@@ -65,14 +80,16 @@
                     <td>
                         <mat-form-field class="full-width">
                             <mat-label>E-Mail</mat-label>
-                            <input type="email" matInput [(ngModel)]="customerService.newCustomer.email" name="email">
+                            <input type="email" matInput [(ngModel)]="customerService.newCustomer.email" name="email"
+                                [disabled]="this.customerService.newCustomerProgess">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="full-width">
                             <mat-label>Date of Birth</mat-label>
                             <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY"
-                                [(ngModel)]="customerService.birthDate" name="birthDate">
+                                [(ngModel)]="customerService.birthDate" name="birthDate"
+                                [disabled]="this.customerService.newCustomerProgess">
                             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>

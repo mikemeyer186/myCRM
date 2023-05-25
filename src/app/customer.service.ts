@@ -9,6 +9,41 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 })
 export class CustomerService {
   newCustomer = new Customer();
+  newCustomerProgess: boolean = false;
+  newCustomerLand: string[] = [
+    'Deutschland',
+    'Österreich',
+    'Schweiz',
+    'USA',
+    'China',
+    'Frankreich',
+    'Italien',
+    'Spanien',
+    'Portugal',
+    'Niederlande',
+    'Belgien',
+    'Luxemburg',
+    'Polen',
+    'Tschechien',
+    'Griechenland',
+    'Türkei',
+    'Norwegen',
+    'Schweden',
+    'Großbritannien',
+    'Irland',
+    'Kanada',
+    'Brasilien',
+    'Argentinien',
+    'Mexiko',
+    'Japan',
+    'Indien',
+    'Australien',
+    'Neuseeland',
+    'Südafrika',
+    'Ägypten',
+    'Tunesien',
+    'Marokko',
+  ];
   birthDate!: Date;
 
   constructor(public addDialog: MatDialog, private firestore: Firestore) {}
@@ -33,8 +68,8 @@ export class CustomerService {
    * Save new customer from dialog
    */
   saveNewCustomer() {
+    this.newCustomerProgess = true;
     this.newCustomer.birthDate = this.birthDate.getTime();
-    this.addCustomerDialogClose();
     this.createNewCustomerFirestore();
   }
 
@@ -47,10 +82,17 @@ export class CustomerService {
       this.newCustomer.toJSON()
     )
       .then((res) => {
-        console.log('Upload ok', res);
+        this.newCustomerProgressAnimation();
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  newCustomerProgressAnimation() {
+    setTimeout(() => {
+      this.newCustomerProgess = false;
+      this.addCustomerDialogClose();
+    }, 1000);
   }
 }
