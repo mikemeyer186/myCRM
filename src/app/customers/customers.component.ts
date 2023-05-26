@@ -1,7 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CustomerService } from '../customer.service';
-import { MatSort, Sort } from '@angular/material/sort';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -9,34 +8,53 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss'],
 })
-export class CustomersComponent {
-  constructor(
-    public customerService: CustomerService,
-    private _liveAnnouncer: LiveAnnouncer
-  ) {}
+export class CustomersComponent implements OnInit, OnDestroy {
+  @ViewChild(MatSort) sort!: MatSort;
 
-  dataSource = new MatTableDataSource(this.customerService.customerList);
+  dataSource = new MatTableDataSource();
   displayedColumns: string[] = [
     'firstName',
     'lastName',
     'street',
     'postalCode',
     'city',
+    'state',
+    'country',
+    'email',
+    'birthDate',
+  ];
+  displayedColumnsTitles: string[] = [
+    'First Name',
+    'Last Name',
+    'Street',
+    'Postal Code',
+    'City',
+    'State',
+    'Country',
+    'Email',
+    'Birth Date',
   ];
 
-  @ViewChild(MatSort) sort!: MatSort;
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+  constructor(public customerService: CustomerService) {
+    setTimeout(() => {
+      this.checkIfCustomersAreLoaded();
+      this.dataSource.sort = this.sort;
+    }, 3000);
   }
 
-  announceSortChange(sortState: Sort) {
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-      console.log(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-      console.log('Sorting cleared');
+  checkIfCustomersAreLoaded() {
+    if (this.customerService.customersLoaded) {
+      this.dataSource = new MatTableDataSource(
+        this.customerService.customerList
+      );
     }
+  }
+
+  ngOnInit(): void {
+    this.customerService.loadCustomerFromFirestore();
+  }
+
+  ngOnDestroy(): void {
+    this.customerService.customersLoaded = false;
   }
 }

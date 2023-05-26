@@ -12,7 +12,4 @@ export class SidenavComponent {
     public globalService: GlobalService,
     public customerService: CustomerService
   ) {}
-  ngOnInit(): void {
-    this.customerService.loadCustomerFromFirestore();
-  }
 }

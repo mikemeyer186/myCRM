@@ -16,6 +16,7 @@ export class CustomerService {
   customerList: any[] = [];
   newCustomer = new Customer();
   newCustomerProgess: boolean = false;
+  customersLoaded: boolean = false;
   birthDate!: Date;
   newCustomerCountry: string[] = [
     'Deutschland',
@@ -77,6 +78,7 @@ export class CustomerService {
     this.newCustomerProgess = true;
     this.newCustomer.birthDate = this.birthDate.toLocaleDateString();
     this.createNewCustomerFirestore();
+    this.loadCustomerFromFirestore();
   }
 
   /**
@@ -95,6 +97,9 @@ export class CustomerService {
       });
   }
 
+  /**
+   * Animation for the progress spinner
+   */
   newCustomerProgressAnimation() {
     setTimeout(() => {
       this.newCustomerProgess = false;
@@ -102,14 +107,26 @@ export class CustomerService {
     }, 1000);
   }
 
+  /**
+   * Load all customers from Firestore
+   */
   async loadCustomerFromFirestore() {
     const querySnapshot = await getDocs(
       collection(this.firestore, 'customers')
     );
     this.customerList = querySnapshot.docs.map((customer) => {
       const data = customer.data() as Customer;
+      this.setCustomerLoadStatus();
       return { ...data };
     });
-    console.log(this.customerList);
+  }
+
+  /**
+   * Set the customer load status after 1 second
+   */
+  setCustomerLoadStatus() {
+    setTimeout(() => {
+      this.customersLoaded = true;
+    }, 2000);
   }
 }
