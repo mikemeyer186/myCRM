@@ -61,8 +61,7 @@ export class CustomerService {
    * Open the add customer dialog
    */
   addCustomerDialogOpen() {
-    this.newCustomer = new Customer();
-    this.newCustomer.birthDate = '';
+    //this.newCustomer = new Customer();
     const addDialog = this.addDialog.open(DialogAddCustomerComponent, {
       maxWidth: '100vw',
     });
@@ -121,18 +120,9 @@ export class CustomerService {
     );
     this.customerList = querySnapshot.docs.map((customer) => {
       const data = customer.data() as Customer;
-      this.setCustomerLoadStatus();
-      return { ...data };
+      const id = customer.id;
+      return { id, ...data };
     });
-  }
-
-  /**
-   * Set the customer load status after 1 second
-   */
-  setCustomerLoadStatus() {
-    setTimeout(() => {
-      this.customersLoaded = true;
-    }, 2000);
-    this.customersLoaded = false;
+    console.log(this.customerList);
   }
 }

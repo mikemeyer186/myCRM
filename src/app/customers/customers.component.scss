@@ -14,6 +14,7 @@ th.mat-sort-header-sorted {
 
 .table-row {
   transition: all 125ms ease-in-out;
+  cursor: pointer;
   &:hover {
     background-color: rgba(200, 200, 200, 0.05) !important;
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../global.service';
 import { CustomerService } from '../customer.service';
 
@@ -7,9 +7,13 @@ import { CustomerService } from '../customer.service';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit {
   constructor(
     public globalService: GlobalService,
     public customerService: CustomerService
   ) {}
+
+  ngOnInit(): void {
+    this.customerService.loadCustomerFromFirestore();
+  }
 }

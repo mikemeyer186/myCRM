@@ -30,6 +30,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     DashboardComponent,
     CustomersComponent,
     DialogAddCustomerComponent,
+    CustomerDetailComponent,
   ],
   imports: [
     BrowserModule,

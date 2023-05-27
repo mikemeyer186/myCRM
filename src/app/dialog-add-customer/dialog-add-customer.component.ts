@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomerService } from '../customer.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add-customer',
@@ -7,5 +8,8 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./dialog-add-customer.component.scss'],
 })
 export class DialogAddCustomerComponent {
-  constructor(public customerService: CustomerService) {}
+  constructor(
+    public customerService: CustomerService,
+    public dialogRef: MatDialogRef<DialogAddCustomerComponent>
+  ) {}
 }

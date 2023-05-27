@@ -39,8 +39,6 @@ export class CustomersComponent implements OnInit, OnDestroy {
   ];
 
   constructor(public customerService: CustomerService) {
-    this.refreshCustomerTable();
-
     this.customerService.newCustomerAdded.subscribe(() => {
       this.refreshCustomerTable();
       this.table.renderRows();
@@ -48,7 +46,14 @@ export class CustomersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.customerService.loadCustomerFromFirestore();
+    setTimeout(() => {
+      this.customerService.customersLoaded = true;
+      this.checkIfCustomersAreLoaded();
+    }, 500);
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }, 550);
   }
 
   ngOnDestroy(): void {
