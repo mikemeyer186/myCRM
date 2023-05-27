@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CustomerService } from '../customer.service';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-customers',
@@ -10,6 +11,8 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class CustomersComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatTable) table!: MatTable<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = [
@@ -36,18 +39,12 @@ export class CustomersComponent implements OnInit, OnDestroy {
   ];
 
   constructor(public customerService: CustomerService) {
-    setTimeout(() => {
-      this.checkIfCustomersAreLoaded();
-      this.dataSource.sort = this.sort;
-    }, 3000);
-  }
+    this.refreshCustomerTable();
 
-  checkIfCustomersAreLoaded() {
-    if (this.customerService.customersLoaded) {
-      this.dataSource = new MatTableDataSource(
-        this.customerService.customerList
-      );
-    }
+    this.customerService.newCustomerAdded.subscribe(() => {
+      this.refreshCustomerTable();
+      this.table.renderRows();
+    });
   }
 
   ngOnInit(): void {
@@ -56,5 +53,27 @@ export class CustomersComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.customerService.customersLoaded = false;
+  }
+
+  /**
+   * Check if customers are loaded from Firestore and set the dataSource
+   */
+  checkIfCustomersAreLoaded() {
+    if (this.customerService.customersLoaded) {
+      this.dataSource = new MatTableDataSource(
+        this.customerService.customerList
+      );
+    }
+  }
+
+  /**
+   * Refresh the customer table and set the paginator and sort
+   */
+  refreshCustomerTable() {
+    setTimeout(() => {
+      this.checkIfCustomersAreLoaded();
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }, 3000);
   }
 }

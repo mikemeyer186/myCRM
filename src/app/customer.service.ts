@@ -8,6 +8,7 @@ import {
   addDoc,
   getDocs,
 } from '@angular/fire/firestore';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class CustomerService {
   newCustomer = new Customer();
   newCustomerProgess: boolean = false;
   customersLoaded: boolean = false;
+  newCustomerAdded: any = new Subject();
   birthDate!: Date;
   newCustomerCountry: string[] = [
     'Deutschland',
@@ -59,6 +61,8 @@ export class CustomerService {
    * Open the add customer dialog
    */
   addCustomerDialogOpen() {
+    this.newCustomer = new Customer();
+    this.newCustomer.birthDate = '';
     const addDialog = this.addDialog.open(DialogAddCustomerComponent, {
       maxWidth: '100vw',
     });
@@ -76,6 +80,7 @@ export class CustomerService {
    */
   saveNewCustomer() {
     this.newCustomerProgess = true;
+    this.newCustomerAdded.next(this.customerList.length);
     this.newCustomer.birthDate = this.birthDate.toLocaleDateString();
     this.createNewCustomerFirestore();
     this.loadCustomerFromFirestore();
@@ -128,5 +133,6 @@ export class CustomerService {
     setTimeout(() => {
       this.customersLoaded = true;
     }, 2000);
+    this.customersLoaded = false;
   }
 }
