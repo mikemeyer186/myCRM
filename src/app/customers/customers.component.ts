@@ -79,6 +79,6 @@ export class CustomersComponent implements OnInit, OnDestroy {
       this.checkIfCustomersAreLoaded();
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    }, 3000);
+    }, 2000);
   }
 }
