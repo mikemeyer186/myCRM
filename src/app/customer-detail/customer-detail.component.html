@@ -1,1 +1,31 @@
-<p>customer-detail works!</p>
+<mat-card>
+    <mat-card-content>
+        <div class="top-box">
+            <img src="assets/img/profile.png" alt="Profilimage">
+            <div class="top-box-right">
+                <mat-card-title>{{ this.customerDetail.firstName + " " + this.customerDetail.lastName
+                    }}</mat-card-title>
+                <mat-card-subtitle>ID: {{ this.customerID }}</mat-card-subtitle>
+            </div>
+        </div>
+        <mat-card-content>
+            <mat-form-field>
+                <input matInput placeholder="Name" [(ngModel)]="this.customerDetail.firstName">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Email" [(ngModel)]="this.customerDetail.email">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Street" [(ngModel)]="this.customerDetail.street">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="City" [(ngModel)]="this.customerDetail.city">
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Save</button>
+            <button mat-raised-button color="warn">Delete</button>
+            <button mat-raised-button routerLink="/customers">Cancel</button>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>
