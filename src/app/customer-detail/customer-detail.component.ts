@@ -11,12 +11,16 @@ import { CustomerService } from '../customer.service';
 export class CustomerDetailComponent {
   customerDetail = new Customer();
   customerID: string = '';
+  customerName: string = '';
+  customerEdit: boolean = false;
   constructor(
     private route: ActivatedRoute,
     public customerService: CustomerService
   ) {
     this.getCustomerIdFromRoute();
     this.findCustomerById();
+    this.customerName =
+      this.customerDetail.firstName + ' ' + this.customerDetail.lastName;
   }
 
   /**
@@ -34,5 +38,9 @@ export class CustomerDetailComponent {
       (customer) => customer.id == this.customerID
     );
     console.log(this.customerDetail);
+  }
+
+  customerEditToggle() {
+    this.customerEdit = !this.customerEdit;
   }
 }

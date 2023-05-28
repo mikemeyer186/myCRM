@@ -3,28 +3,32 @@
         <div class="top-box">
             <img src="assets/img/profile.png" alt="Profilimage">
             <div class="top-box-right">
-                <mat-card-title>{{ this.customerDetail.firstName + " " + this.customerDetail.lastName
-                    }}</mat-card-title>
+                <mat-card-title>{{ this.customerName }}</mat-card-title>
                 <mat-card-subtitle>ID: {{ this.customerID }}</mat-card-subtitle>
             </div>
         </div>
         <mat-card-content>
             <mat-form-field>
-                <input matInput placeholder="Name" [(ngModel)]="this.customerDetail.firstName">
+                <input matInput placeholder="Name" [(ngModel)]="this.customerDetail.firstName"
+                    [disabled]="!this.customerEdit">
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Email" [(ngModel)]="this.customerDetail.email">
+                <input matInput placeholder="Email" [(ngModel)]="this.customerDetail.email"
+                    [disabled]="!this.customerEdit">
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Street" [(ngModel)]="this.customerDetail.street">
+                <input matInput placeholder="Street" [(ngModel)]="this.customerDetail.street"
+                    [disabled]="!this.customerEdit">
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="City" [(ngModel)]="this.customerDetail.city">
+                <input matInput placeholder="City" [(ngModel)]="this.customerDetail.city"
+                    [disabled]="!this.customerEdit">
             </mat-form-field>
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button color="primary">Save</button>
-            <button mat-raised-button color="warn">Delete</button>
+        <mat-card-actions class="btn-group">
+            <button mat-raised-button color="primary" [disabled]="!this.customerEdit">Save</button>
+            <button mat-raised-button color="warn" [disabled]="!this.customerEdit">Delete</button>
+            <button mat-fab color="primary" (click)="customerEditToggle()">Edit</button>
             <button mat-raised-button routerLink="/customers">Cancel</button>
         </mat-card-actions>
     </mat-card-content>
