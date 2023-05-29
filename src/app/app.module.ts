@@ -33,6 +33,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { DialogDelCustomerComponent } from './dialog-del-customer/dialog-del-customer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
     CustomersComponent,
     DialogAddCustomerComponent,
     CustomerDetailComponent,
+    DialogDelCustomerComponent,
   ],
   imports: [
     BrowserModule,

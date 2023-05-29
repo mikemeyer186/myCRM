@@ -12,6 +12,7 @@ import {
   deleteDoc,
 } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
+import { DialogDelCustomerComponent } from './dialog-del-customer/dialog-del-customer.component';
 
 @Injectable({
   providedIn: 'root',
@@ -60,7 +61,11 @@ export class CustomerService {
     'Marokko',
   ];
 
-  constructor(public addDialog: MatDialog, private firestore: Firestore) {}
+  constructor(
+    public addDialog: MatDialog,
+    public deleteDialog: MatDialog,
+    private firestore: Firestore
+  ) {}
 
   /**
    * Open the add customer dialog
@@ -68,6 +73,15 @@ export class CustomerService {
   addCustomerDialogOpen() {
     //this.newCustomer = new Customer();
     const addDialog = this.addDialog.open(DialogAddCustomerComponent, {
+      maxWidth: '100vw',
+    });
+  }
+
+  /**
+   * Open the delete customer dialog
+   */
+  deleteCustomerDialogOpen() {
+    const deleteDialog = this.deleteDialog.open(DialogDelCustomerComponent, {
       maxWidth: '100vw',
     });
   }
@@ -143,8 +157,9 @@ export class CustomerService {
    * Deleting customer from Firestore
    * @param id - customer id
    */
-  deleteCustomerFromFirestore(id: string) {
-    const docRef = doc(this.firestore, `customers/${id}`);
+  deleteCustomerFromFirestore() {
+    const docRef = doc(this.firestore, `customers/${this.customerID}`);
     deleteDoc(docRef);
+    this.loadCustomerFromFirestore();
   }
 }

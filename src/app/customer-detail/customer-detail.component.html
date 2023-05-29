@@ -16,7 +16,7 @@
                     <mat-icon>edit</mat-icon>
                     <span>Edit Customer</span>
                 </button>
-                <button mat-menu-item disabled>
+                <button mat-menu-item (click)="this.customerService.deleteCustomerDialogOpen()">
                     <mat-icon>delete</mat-icon>
                     <span>Delete Customer</span>
                 </button>
