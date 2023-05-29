@@ -22,7 +22,7 @@ export class CustomerService {
   newCustomer = new Customer();
   newCustomerProgess: boolean = false;
   customersLoaded: boolean = false;
-  newCustomerAdded: any = new Subject();
+  customerChangeData: any = new Subject();
   customerID: string = '';
   customerDetail = new Customer();
   birthDate!: Date;
@@ -71,7 +71,7 @@ export class CustomerService {
    * Open the add customer dialog
    */
   addCustomerDialogOpen() {
-    //this.newCustomer = new Customer();
+    this.newCustomer = new Customer();
     const addDialog = this.addDialog.open(DialogAddCustomerComponent, {
       maxWidth: '100vw',
     });
@@ -98,7 +98,7 @@ export class CustomerService {
    */
   saveNewCustomer() {
     this.newCustomerProgess = true;
-    this.newCustomerAdded.next(this.customerList.length);
+    this.customerChangeData.next(this.customerList.length);
     this.newCustomer.birthDate = this.birthDate.toLocaleDateString();
     this.createNewCustomerFirestore();
     this.loadCustomerFromFirestore();
@@ -155,11 +155,12 @@ export class CustomerService {
 
   /**
    * Deleting customer from Firestore
-   * @param id - customer id
    */
   deleteCustomerFromFirestore() {
     const docRef = doc(this.firestore, `customers/${this.customerID}`);
-    deleteDoc(docRef);
-    this.loadCustomerFromFirestore();
+    deleteDoc(docRef).then(() => {
+      this.loadCustomerFromFirestore();
+      this.customerChangeData.next(this.customerList.length);
+    });
   }
 }
