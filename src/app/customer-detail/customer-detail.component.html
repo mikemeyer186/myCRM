@@ -4,64 +4,84 @@
             <img src="assets/img/profile.png" alt="Profilimage">
             <div class="top-box-right">
                 <mat-card-title>{{ this.customerName }}</mat-card-title>
-                <mat-card-subtitle>ID: {{ this.customerID }}</mat-card-subtitle>
+                <mat-card-subtitle>ID: {{ this.customerService.customerID }}</mat-card-subtitle>
             </div>
         </div>
         <div class="data-box">
-            <button mat-fab class="btn-edit" color="primary"
-                (click)="customerEditToggle()"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="btn-edit"
+                [disabled]="this.customerEdit"><mat-icon>more_vert</mat-icon></button>
+
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="customerEditToggle()">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit Customer</span>
+                </button>
+                <button mat-menu-item disabled>
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete Customer</span>
+                </button>
+            </mat-menu>
 
             <h2>Personal data:</h2>
 
             <div>
                 <mat-form-field>
-                    <input matInput placeholder="First Name" [(ngModel)]="this.customerDetail.firstName"
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="First Name" [(ngModel)]="this.customerService.customerDetail.firstName"
                         [disabled]="!this.customerEdit">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="Last Name" [(ngModel)]="this.customerDetail.lastName"
-                        [disabled]="!this.customerEdit">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field>
-                    <input matInput placeholder="Street" [(ngModel)]="this.customerDetail.street"
-                        [disabled]="!this.customerEdit">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Postal Code" [(ngModel)]="this.customerDetail.postalCode"
-                        [disabled]="!this.customerEdit">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="City" [(ngModel)]="this.customerDetail.city"
+                    <mat-label>Last Name</mat-label>
+                    <input matInput placeholder="Last Name" [(ngModel)]="this.customerService.customerDetail.lastName"
                         [disabled]="!this.customerEdit">
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input matInput placeholder="State" [(ngModel)]="this.customerDetail.state"
+                    <mat-label>Street</mat-label>
+                    <input matInput placeholder="Street" [(ngModel)]="this.customerService.customerDetail.street"
                         [disabled]="!this.customerEdit">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="Country" [(ngModel)]="this.customerDetail.country"
+                    <mat-label>Postal Code</mat-label>
+                    <input matInput placeholder="Postal Code"
+                        [(ngModel)]="this.customerService.customerDetail.postalCode" [disabled]="!this.customerEdit">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>City</mat-label>
+                    <input matInput placeholder="City" [(ngModel)]="this.customerService.customerDetail.city"
                         [disabled]="!this.customerEdit">
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input matInput placeholder="Email" [(ngModel)]="this.customerDetail.email"
+                    <mat-label>State</mat-label>
+                    <input matInput placeholder="State" [(ngModel)]="this.customerService.customerDetail.state"
                         [disabled]="!this.customerEdit">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="Date of Birth" [(ngModel)]="this.customerDetail.birthDate"
+                    <mat-label>Country</mat-label>
+                    <input matInput placeholder="Country" [(ngModel)]="this.customerService.customerDetail.country"
                         [disabled]="!this.customerEdit">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>E-Mail</mat-label>
+                    <input matInput placeholder="E-mail" [(ngModel)]="this.customerService.customerDetail.email"
+                        [disabled]="!this.customerEdit">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput placeholder="Date of Birth"
+                        [(ngModel)]="this.customerService.customerDetail.birthDate" [disabled]="!this.customerEdit">
                 </mat-form-field>
             </div>
         </div>
         <mat-card-actions class="btn-group">
-            <button mat-raised-button color="primary" [disabled]="!this.customerEdit">Save</button>
-            <button mat-raised-button color="warn" [disabled]="!this.customerEdit">Delete</button>
-            <button mat-raised-button routerLink="/customers">Cancel</button>
+            <button mat-raised-button color="primary" [disabled]="!this.customerEdit"
+                (click)="saveCustomerEdit()">Save</button>
+            <button mat-raised-button routerLink="/customers">Back</button>
         </mat-card-actions>
     </mat-card-content>
 </mat-card>

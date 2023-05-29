@@ -18,24 +18,16 @@ export class CustomersComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = [
     'firstName',
     'lastName',
-    'street',
-    'postalCode',
     'city',
-    'state',
     'country',
     'email',
-    'birthDate',
   ];
   displayedColumnsTitles: string[] = [
     'First Name',
     'Last Name',
-    'Street',
-    'Postal Code',
     'City',
-    'State',
     'Country',
     'Email',
-    'Birth Date',
   ];
 
   constructor(public customerService: CustomerService) {

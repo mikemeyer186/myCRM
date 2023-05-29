@@ -9,8 +9,6 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./customer-detail.component.scss'],
 })
 export class CustomerDetailComponent {
-  customerDetail = new Customer();
-  customerID: string = '';
   customerName: string = '';
   customerEdit: boolean = false;
   constructor(
@@ -19,8 +17,14 @@ export class CustomerDetailComponent {
   ) {
     this.getCustomerIdFromRoute();
     this.findCustomerById();
+    this.setCustomerName();
+  }
+
+  setCustomerName() {
     this.customerName =
-      this.customerDetail.firstName + ' ' + this.customerDetail.lastName;
+      this.customerService.customerDetail.firstName +
+      ' ' +
+      this.customerService.customerDetail.lastName;
   }
 
   /**
@@ -28,19 +32,34 @@ export class CustomerDetailComponent {
    */
   getCustomerIdFromRoute() {
     this.route.params.subscribe((params: any) => {
-      this.customerID = params['id'];
+      this.customerService.customerID = params['id'];
     });
   }
 
-  // find customer by id in customerList
+  /**
+   * finding customer by ID in customer list
+   */
   findCustomerById() {
-    this.customerDetail = this.customerService.customerList.find(
-      (customer) => customer.id == this.customerID
-    );
-    console.log(this.customerDetail);
+    this.customerService.customerDetail =
+      this.customerService.customerList.find(
+        (customer) => customer.id == this.customerService.customerID
+      );
+    console.log(this.customerService.customerDetail);
   }
 
+  /**
+   * toggling customer edit mode in detail view
+   */
   customerEditToggle() {
     this.customerEdit = !this.customerEdit;
+  }
+
+  /**
+   * saving customer edit in firestore
+   */
+  saveCustomerEdit() {
+    this.customerService.updateCustomerInFirestore();
+    this.customerEditToggle();
+    this.setCustomerName();
   }
 }

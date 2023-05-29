@@ -7,6 +7,9 @@ import {
   collection,
   addDoc,
   getDocs,
+  doc,
+  setDoc,
+  deleteDoc,
 } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
 
@@ -19,6 +22,8 @@ export class CustomerService {
   newCustomerProgess: boolean = false;
   customersLoaded: boolean = false;
   newCustomerAdded: any = new Subject();
+  customerID: string = '';
+  customerDetail = new Customer();
   birthDate!: Date;
   newCustomerCountry: string[] = [
     'Deutschland',
@@ -124,5 +129,22 @@ export class CustomerService {
       return { id, ...data };
     });
     console.log(this.customerList);
+  }
+
+  /**
+   * Update customer in Firestore
+   */
+  async updateCustomerInFirestore() {
+    const docRef = doc(this.firestore, `customers/${this.customerID}`);
+    await setDoc(docRef, JSON.parse(JSON.stringify(this.customerDetail)));
+  }
+
+  /**
+   * Deleting customer from Firestore
+   * @param id - customer id
+   */
+  deleteCustomerFromFirestore(id: string) {
+    const docRef = doc(this.firestore, `customers/${id}`);
+    deleteDoc(docRef);
   }
 }
